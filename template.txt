@@ -1,0 +1,8 @@
+
+const component = () => {
+    return(
+        <div></div>
+    )
+}
+
+export defalt component;
