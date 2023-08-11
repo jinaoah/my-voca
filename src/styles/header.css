@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 120px;
+    padding-right: 120px;
+}
+
+.nav-box {
+    display: flex;
+    gap: 40px;
+}
+
+.nav-tab {
+    font-size: 24px;
+}
