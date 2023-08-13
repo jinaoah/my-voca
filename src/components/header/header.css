@@ -14,3 +14,7 @@
 .nav-tab {
     font-size: 24px;
 }
+
+.nav-tab:hover {
+    color: #FFD600;
+}

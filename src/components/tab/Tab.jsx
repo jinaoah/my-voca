@@ -1,8 +1,8 @@
 import { useState } from "react";
-import "../styles/tab.css";
-import Alltab from "./tab/AllTab";
-import DoneTab from "./tab/DoneTab";
-import BookmarkTab from "./tab/BookmarkTab";
+import "./tab.css";
+import Alltab from "./AllTab";
+import DoneTab from "./DoneTab";
+import BookmarkTab from "./BookmarkTab";
 
 const tabComponents = {
     0: <Alltab />,
