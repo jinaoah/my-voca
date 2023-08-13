@@ -1,0 +1,31 @@
+.card-container {
+    box-shadow: 2px 5px 5px 0px rgba(178, 178, 178, 0.5);
+    width: 280px;
+    /* height: 200px; */
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+    border-radius: 8px;
+}
+
+.bookmarkImg, .checkImg {
+    width: 30px;
+}
+
+.checkBox {
+    display: flex;
+    justify-content: flex-end;
+    column-gap: 10px;
+    align-items: center;
+}
+
+.word {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.mean {
+    font-size: 20px;
+}
