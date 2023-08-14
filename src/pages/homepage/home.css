@@ -1,0 +1,9 @@
+.card-box {
+    padding-top: 30px;
+    padding-left: 120px;
+    padding-right: 120px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 40px;
+    flex-wrap: wrap;
+}
