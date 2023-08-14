@@ -19,5 +19,6 @@
     display: flex;
     gap: 20px;
     justify-content: flex-end;
-    padding-right: 200px;
+    padding-right: 120px;
+    margin-top: 50px;
 }
