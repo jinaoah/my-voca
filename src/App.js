@@ -1,13 +1,20 @@
 import logo from './logo.svg';
 import './App.css';
-import Header from './components/Header';
-import Tab from './components/Tab';
+import Header from './components/header/Header';
+import Home from './pages/homepage/home';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import AddCard from './pages/newCard/AddCard';
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <Tab />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />}/>
+          <Route path="/add-card" element={<AddCard />}/>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
