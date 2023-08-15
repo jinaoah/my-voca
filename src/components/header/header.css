@@ -18,3 +18,7 @@
 .nav-tab:hover {
     color: #FFD600;
 }
+
+.active {
+    color: #FFD600;
+}
