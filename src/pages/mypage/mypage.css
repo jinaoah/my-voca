@@ -1,0 +1,29 @@
+.main {
+    margin-top: 120px;
+}
+
+.profile-container {
+    background-color: #FFFBEC;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 60px;
+    width: 730px;
+    padding-left: 68px;
+    padding-bottom: 60px;
+    column-gap: 30px;
+    border-radius: 8px;
+}
+
+.profile-info {
+    text-align: start;
+}
+
+.name {
+    font-size: 24px;
+    font-weight: 600;
+}
+.email {
+    font-size: 20px;
+    color:darkgray;
+}
