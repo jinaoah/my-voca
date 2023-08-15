@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./tab.css";
 import Alltab from "../../pages/homepage/AllTab";
-import Home from "../../pages/homepage/home";
 import DoneTab from "../../pages/homepage/DoneTab";
 import BookmarkTab from "../../pages/homepage/BookmarkTab";
 
