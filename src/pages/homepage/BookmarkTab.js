@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import Card from "../../components/card/Card";
 import "./home.css";
 
@@ -8,17 +8,20 @@ const BookmarkTab = () => {
     { word: "apple", mean: "사과", isChecked: false, isBookmarked: true },
     // 다른 카드들도 추가할 수 있음
   ]);
+  const [bookmarkedWordCards, setBookmarkedWordCards] = useState([]);
 
-  //Card(자식) 컴포넌트에서 값이 변경되었을 때 부모컴포넌트에서 호출하는 함수
+  useEffect(() => {
+    setBookmarkedWordCards(wordCards.filter((wordCard) => wordCard.isBookmarked));
+  }, [wordCards]);
+
   const handleWordCardChange = useCallback((index, updatedWordCard) => {
-    const updatedCards = [...wordCards];
-    updatedCards[index] = updatedWordCard;
+    const updatedCards = wordCards.map((card, idx) =>
+      idx === index ? updatedWordCard : card
+    );
     setWordCards(updatedCards);
-  }, []);
+  }, [wordCards]);
   
-  const bookmarkedWordCards = wordCards.filter(
-    (wordCard) => wordCard.isBookmarked
-  );
+
   return (
     <div className="card-box">
       {bookmarkedWordCards.map((wordCard, idx) => {

@@ -3,10 +3,9 @@ import on from "../../assets/on.png";
 import check from "../../assets/check.png";
 import circle from "../../assets/circle.png";
 import "./card.css";
-// import { useEffect } from "react";
 import { useState } from "react";
 
-const Card = ({wordCard, onWordCardChange, onBookmarkChange}) => {
+const Card = ({wordCard, onWordCardChange}) => {
   const { word, mean, isChecked, isBookmarked } = wordCard;
 
   const [checked, setChecked] = useState(isChecked); //암기완료
@@ -16,10 +15,10 @@ const Card = ({wordCard, onWordCardChange, onBookmarkChange}) => {
     let updatedWordCard;
     if(button === "check"){
       setChecked(checked => !checked);
-      updatedWordCard = {...wordCard, isChecked: checked};
+      updatedWordCard = {...wordCard, isChecked: !checked};
     } else {
       setBookmark(!bookmark);
-      updatedWordCard = {...wordCard, isBookmarked: bookmark};
+      updatedWordCard = {...wordCard, isBookmarked: !bookmark};
     }
     onWordCardChange(updatedWordCard);
   };
