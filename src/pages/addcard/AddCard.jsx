@@ -2,8 +2,13 @@ import React from "react";
 import "./addcard.css";
 import plus from "../../assets/plus.png";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AddCard = () => {
+  const navigate = useNavigate();  
+  const [word, setWord] = useState("");
+  const [mean, setMean] = useState("");
+  const [partsOfSpeech, setPartsOfSpeech] = useState("null");
   const [sentenceData, setSentenceData] = useState([
     { sentence: "", translation: "" },
   ]);
@@ -17,26 +22,60 @@ const AddCard = () => {
     updatedSentenceData[index][key] = value;
     setSentenceData(updatedSentenceData);
   };
+  //새로운 카드 객체를 local에 저장하기
+  const addCard = () => {
+    if (word.trim() === "") {
+      alert("단어를 입력해주세요.");
+      return false;
+    }
+      const card = {
+        word: word,
+        mean: mean,
+        partsOfSpeech: partsOfSpeech,
+        sentences: sentenceData,
+      };
+      console.log(card);
+      return true;
+  }
+
+  const handleAdd = () => {
+    if(addCard()){
+      alert('성공적으로 저장이 되었습니다.');
+      navigate("/");
+    }
+  }
   return (
     <div>
       <div className="head-container">
         <div className="cancel-btn">취소</div>
         <div className="head-title">새 단어</div>
-        <div className="add-btn">완료</div>
+        <div className="add-btn" onClick={handleAdd}>완료</div>
       </div>
       <div className="main">
         <div className="input-container">
           <div className="input-value">
             <div className="input-text">New Voca</div>
-            <input className="input-value" />
+            <input 
+              id="word" 
+              className="input-value"
+              value={word}
+              onChange={(e)=>setWord(e.target.value)} />
           </div>
           <div className="input-value">
             <div className="input-text">의미</div>
-            <input className="input-value" />
+            <input 
+              id="mean" 
+              className="input-value"
+              value={mean}
+              onChange={(e)=>{setMean(e.target.value)}} />
           </div>
           <div className="input-value">
             <div className="input-text">품사</div>
-            <select className="input-value" id="partsOfSpeech">
+            <select 
+              className="input-value" 
+              id="partsOfSpeech"
+              value={partsOfSpeech}
+              onChange={(e)=>setPartsOfSpeech(e.target.value)}>
               <option value={"null"}>선택 안 함</option>
               <option value={"noun"}>명사</option>
               <option value={"verb"}>동사</option>
