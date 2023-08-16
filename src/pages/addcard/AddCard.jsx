@@ -28,14 +28,17 @@ const AddCard = () => {
       alert("단어를 입력해주세요.");
       return false;
     }
-      const card = {
-        word: word,
-        mean: mean,
-        partsOfSpeech: partsOfSpeech,
-        sentences: sentenceData,
-      };
-      console.log(card);
-      return true;
+    const card = {
+      word: word,
+      mean: mean,
+      partsOfSpeech: partsOfSpeech,
+      sentences: sentenceData,
+      isBookmarked: false,
+      isChecked: false
+    };
+    // 로컬 스토리지에 저장하기
+    localStorage.setItem(card.word, JSON.stringify(card));
+    return true;
   }
 
   const handleAdd = () => {
@@ -47,7 +50,7 @@ const AddCard = () => {
   return (
     <div>
       <div className="head-container">
-        <div className="cancel-btn">취소</div>
+        <div className="cancel-btn" onClick={()=>navigate("/")}>취소</div>
         <div className="head-title">새 단어</div>
         <div className="add-btn" onClick={handleAdd}>완료</div>
       </div>
