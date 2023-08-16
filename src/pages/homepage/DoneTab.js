@@ -19,7 +19,7 @@ const DoneTab = () => {
     setWordCards(updatedCards);
     localStorage.setItem(updatedWordCard.word, JSON.stringify(updatedWordCard));
 
-    console.log('새로고침 ->',JSON.parse(localStorage.getItem(updatedWordCard.word)));
+    // console.log('새로고침 ->',JSON.parse(localStorage.getItem(updatedWordCard.word)));
   }, []);
   
   const DoneWordCards = wordCards.filter(wordCard => wordCard.isChecked);
