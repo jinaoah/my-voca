@@ -2,16 +2,29 @@ import React from "react";
 import "./addcard.css";
 import plus from "../../assets/plus.png";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const AddCard = () => {
   const navigate = useNavigate();  
+  const location = useLocation();
+  
   const [word, setWord] = useState("");
   const [mean, setMean] = useState("");
   const [partsOfSpeech, setPartsOfSpeech] = useState("null");
   const [sentenceData, setSentenceData] = useState([
     { sentence: "", translation: "" },
   ]);
+  
+  useEffect(()=>{
+    if(location.state){
+      let {word, mean, partsOfSpeech, sentences} = location.state;
+      setWord(word);
+      setMean(mean);
+      setPartsOfSpeech(partsOfSpeech);
+      setSentenceData(sentences);
+    }
+  },[])
+  
 
   const addSentence = () => {
     setSentenceData([...sentenceData, { sentence: "", translation: "" }]);
