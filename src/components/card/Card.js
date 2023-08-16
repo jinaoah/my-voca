@@ -11,8 +11,8 @@ const Card = ({idx, wordCard, onWordCardChange, navigate}) => {
   const [checked, setChecked] = useState(isChecked); //암기완료
   const [bookmark, setBookmark] = useState(isBookmarked); //즐겨찾기
 
+  let updatedWordCard;
   const handleChange = (button) => {
-    let updatedWordCard;
     if(button === "check"){
       setChecked(checked => !checked);
       updatedWordCard = {...wordCard, isChecked: !isChecked};
@@ -25,12 +25,12 @@ const Card = ({idx, wordCard, onWordCardChange, navigate}) => {
   };
  
   return (
-    <div className="card-container" onClick={()=>navigate("/word-card")}>
+    <div className="card-container" >
       <img className="bookmarkImg" 
           src={bookmark ? on : off} 
           alt="즐겨찾기"
           onClick={()=>{handleChange("bookmark")}}/>
-      <div>
+      <div onClick={()=>navigate("/word-card", {state: wordCard})}>
         <div className="word">{word}</div>
         <div className="mean">{mean}</div>
       </div>
