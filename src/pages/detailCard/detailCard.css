@@ -30,7 +30,7 @@
     width: 50px;
     height: 50px;
     display: flex;
-    margin-left: 180px;
+    /* margin-left: 180px; */
     margin-bottom: 36px;
 }
 
@@ -39,12 +39,12 @@
     font-weight: 700;
 }
 
-.word-box:nth-child(1) {
+.words {
     display: flex;
-    margin-left: 180px;
+    /* margin-left: 180px; */
     align-items: center;
+    justify-content: start;
     gap: 24px;
-    background-color: aliceblue;
 }
 
 .word-img {
@@ -53,5 +53,82 @@
 }
 
 .word-box {
+    width: 40%;
+    margin-left: 180px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #DDDDDD;
+    /* margin: 0 10px; */
+    height: 600px;
+}
+
+.parts {
+    background-color: #A9FFFA;
+    display: flex;
+    width: fit-content;
+    font-weight: 600;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 8px;
+    margin-top: 30px;
+    padding-bottom: 8px;
+    font-size: 24px;
+    border-radius: 10px;
+    justify-content: flex-start;
+}
+
+.means {
+    font-size: 28px;
+    text-align: start;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.mean-box {
+    display: flex;
+}
+
+.memo {
+    background-color: #FFFBEC;
+    text-align: start;
+    font-size: 20px;
+    padding: 20px;
+    width: 80%;
+    /* margin-top: 50px; */
+}
+
+.sentence-box {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    padding-left: 55px;
+    row-gap: 20px;
+}
+
+.main-box {
+    display: flex;
     margin-top: 80px;
+}
+
+.sen-txt {
+    background-color: #FFFBEC;
+    font-size: 20px;
+    width: fit-content;
+    height: fit-content;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.sen {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.trans {
+    font-size: 20px;
 }
