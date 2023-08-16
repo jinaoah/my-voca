@@ -3,24 +3,26 @@ import Card from "../../components/card/Card";
 import "./home.css";
 
 const BookmarkTab = () => {
-  const [wordCards, setWordCards] = useState([
-    { word: "happy", mean: "행복한", isChecked: true, isBookmarked: true },
-    { word: "apple", mean: "사과", isChecked: false, isBookmarked: true },
-    // 다른 카드들도 추가할 수 있음
-  ]);
-  const [bookmarkedWordCards, setBookmarkedWordCards] = useState([]);
+  const [wordCards, setWordCards] = useState([]);
+  
+  const allWordCards = Object.keys(localStorage).map(key => {
+    return JSON.parse(localStorage.getItem(key));
+  });
 
-  useEffect(() => {
-    setBookmarkedWordCards(wordCards.filter((wordCard) => wordCard.isBookmarked));
-  }, [wordCards]);
+  useEffect(()=>{
+    setWordCards(allWordCards);
+  },[])
 
   const handleWordCardChange = useCallback((index, updatedWordCard) => {
-    const updatedCards = wordCards.map((card, idx) =>
-      idx === index ? updatedWordCard : card
-    );
+    const updatedCards = [...wordCards];
+    updatedCards[index] = updatedWordCard;
     setWordCards(updatedCards);
-  }, [wordCards]);
+    localStorage.setItem(updatedWordCard.word, JSON.stringify(updatedWordCard));
+
+    console.log('새로고침 ->',JSON.parse(localStorage.getItem(updatedWordCard.word)));
+  }, []);
   
+  const bookmarkedWordCards = wordCards.filter(wordCard => wordCard.isBookmarked)
 
   return (
     <div className="card-box">

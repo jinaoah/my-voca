@@ -10,8 +10,7 @@ const Home = () => {
     <div>
       <Header navigate={navigate}/>
       <SearchBox />
-      <Tab />
-      
+      <Tab navigate={navigate}/>
     </div>
   );
 };

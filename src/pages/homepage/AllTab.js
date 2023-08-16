@@ -1,32 +1,39 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Card from "../../components/card/Card";
 import "./home.css";
 
-const Alltab = () => {
-    const [wordCards, setWordCards] = useState([
-        { word: "happy", mean: "행복한", isChecked: true, isBookmarked: true },
-        { word: "apple", mean: "사과", isChecked: false, isBookmarked: true },
-        // 다른 카드들도 추가할 수 있음
-      ]);
-      
-      const handleWordCardChange = useCallback((index, updatedWordCard) => {
-        const updatedCards = [...wordCards];
-        updatedCards[index] = updatedWordCard;
-        setWordCards(updatedCards);
-    },[]);
+const Alltab = ({navigate}) => {
 
-    return(
-        <div className="card-box">
-        {wordCards.map((wordCard, idx) => {
-          return(
-            <Card 
-                wordCard={wordCard} 
-                key={wordCard.word} 
-                onWordCardChange={(updatedWordCard) => handleWordCardChange(idx, updatedWordCard)}/>
-            );})
-        }
-      </div>
-    );
-}
+  const allWordCards = Object.keys(localStorage).map(key => {
+    return JSON.parse(localStorage.getItem(key));
+  });
+  const [wordCards, setWordCards] = useState([allWordCards]);
+
+  const handleWordCardChange = useCallback((index, updatedWordCard) => {
+    const updatedCards = [...wordCards];
+    updatedCards[index] = updatedWordCard;
+    setWordCards(updatedCards);
+    localStorage.setItem(updatedWordCard.word, JSON.stringify(updatedWordCard));
+
+    console.log('새로고침 ->',JSON.parse(localStorage.getItem(updatedWordCard.word)));
+  }, []);
+
+  return (
+    <div className="card-box">
+      {allWordCards.map((wordCard, idx) => {
+        return (
+          <Card
+            wordCard={wordCard}
+            key={idx}
+            navigate={navigate}
+            onWordCardChange={(updatedWordCard) =>
+              handleWordCardChange(idx, updatedWordCard)
+            }
+          />
+        );
+      })}
+    </div>
+  );
+};
 
 export default Alltab;
