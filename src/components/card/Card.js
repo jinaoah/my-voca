@@ -5,7 +5,7 @@ import circle from "../../assets/circle.png";
 import "./card.css";
 import { useState } from "react";
 
-const Card = ({wordCard, onWordCardChange}) => {
+const Card = ({idx, wordCard, onWordCardChange, navigate}) => {
   const { word, mean, isChecked, isBookmarked } = wordCard;
 
   const [checked, setChecked] = useState(isChecked); //암기완료
@@ -15,20 +15,17 @@ const Card = ({wordCard, onWordCardChange}) => {
     let updatedWordCard;
     if(button === "check"){
       setChecked(checked => !checked);
-      updatedWordCard = {...wordCard, isChecked: !checked};
-    } else {
+      updatedWordCard = {...wordCard, isChecked: !isChecked};
+    } else if(button === "bookmark"){
       setBookmark(!bookmark);
-      updatedWordCard = {...wordCard, isBookmarked: !bookmark};
+      updatedWordCard = {...wordCard, isBookmarked: !isBookmarked};
     }
+    // console.log(updatedWordCard);
     onWordCardChange(updatedWordCard);
   };
-  //값 변경 테스트
-  // useEffect(()=>{
-  //   console.log('암기완료 했는가? ->', checked)
-  //   // console.log('즐겨찾기 했는가? ->', bookmark);
-  // }, [checked])
+ 
   return (
-    <div className="card-container">
+    <div className="card-container" onClick={()=>navigate("/word-card")}>
       <img className="bookmarkImg" 
           src={bookmark ? on : off} 
           alt="즐겨찾기"

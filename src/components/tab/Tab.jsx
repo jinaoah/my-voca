@@ -1,4 +1,5 @@
 import { useState } from "react";
+import React from "react";
 import "./tab.css";
 import Alltab from "../../pages/homepage/AllTab";
 import DoneTab from "../../pages/homepage/DoneTab";
@@ -11,7 +12,7 @@ const tabComponents = {
 }
 const tabLabels = ["ALL", "DONE", "BOOKMARK"];
 
-const Tab = () => {
+const Tab = ({navigate}) => {
     const [currentTab, setTab] = useState(0);
 
     const handleTabClick = (index) => {
@@ -31,7 +32,8 @@ const Tab = () => {
                     </li>
                 ))}
             </ul>
-            <div>{tabComponents[currentTab]}</div>
+            {/* <div>{tabComponents[currentTab](navigate)}</div> */}
+            {tabComponents[currentTab] && React.cloneElement(tabComponents[currentTab], { navigate })}
         </div>
     );
 }
