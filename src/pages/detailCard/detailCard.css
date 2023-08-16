@@ -1,0 +1,57 @@
+.update-btn, .delete-btn {
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-radius: 12px;
+    font-size: 24px;
+}
+
+.update-btn {
+    background-color: white;
+    color: black;
+}
+
+.delete-btn {
+    border: 1px solid #FF5E5E;
+    background-color: #FF5E5E;
+    color: white;
+}
+
+.btn {
+    margin-right: 130px;
+    margin-top: 45px;
+    justify-content: end;
+    gap: 24px;
+    display: flex;
+}
+
+.bookmark {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    margin-left: 180px;
+    margin-bottom: 36px;
+}
+
+.word-text {
+    font-size: 60px;
+    font-weight: 700;
+}
+
+.word-box:nth-child(1) {
+    display: flex;
+    margin-left: 180px;
+    align-items: center;
+    gap: 24px;
+    background-color: aliceblue;
+}
+
+.word-img {
+    width: 48px;
+    height: 48px;
+}
+
+.word-box {
+    margin-top: 80px;
+}
