@@ -5,6 +5,9 @@ import "./mypage.css";
 
 const Mypage = () => {
     const navigate = useNavigate();
+    
+    const name = JSON.parse(sessionStorage.getItem('userData'))[2];
+    const email = JSON.parse(sessionStorage.getItem('userData'))[0];
     return(
         <div>
             <Header navigate={navigate}/>
@@ -12,8 +15,8 @@ const Mypage = () => {
                 <div className="profile-container">
                     <img src={profile} alt="프로필"/>
                     <div className="profile-info">
-                        <div className="name">하진 님</div>
-                        <div className="email">asdf@gmail.com</div>
+                        <div className="name">{name} 님</div>
+                        <div className="email">{email}</div>
                     </div>
                 </div>
             </div>
