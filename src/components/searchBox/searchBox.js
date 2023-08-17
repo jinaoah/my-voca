@@ -11,7 +11,7 @@ const SearchBox = () => {
     <div className="box">
       <input className="input" placeholder="검색창" />
       <button className="add" onClick={goToAddCard}> +</button>
-      <button className="delete">삭제</button>
+      {/* <button className="delete">삭제</button> */}
     </div>  
   );
 };

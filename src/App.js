@@ -7,6 +7,8 @@ import Mypage from './pages/mypage/mypage';
 import DetailCard from './pages/detailCard/DetailCard';
 import Login from './pages/login/login';
 import Join from './pages/join/join';
+import Sentence from './pages/sentence-page/sentence';
+import DetailSen from './pages/sentence-page/DetailSen';
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />}/>
+          <Route path="/sentence" element={<Sentence />}/>
+          <Route path='/sen-card' element={<DetailSen />}/>
           <Route path="/add-card" element={<AddCard />}/>
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/word-card" element={<DetailCard />} />

@@ -3,28 +3,31 @@ import "./addcard.css";
 import plus from "../../assets/plus.png";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const AddCard = () => {
   const navigate = useNavigate();  
   const location = useLocation();
-  
+  const [method, setMethod] = useState(""); //데이터를 게시할건지, 업데이트할건지
   const [word, setWord] = useState("");
   const [mean, setMean] = useState("");
   const [partsOfSpeech, setPartsOfSpeech] = useState("null");
   const [sentenceData, setSentenceData] = useState([
     { sentence: "", translation: "" },
   ]);
-  
-  useEffect(()=>{
-    if(location.state){
-      let {word, mean, partsOfSpeech, sentences} = location.state;
+
+  useEffect(() => {
+    if (location.state) { //수정할 데이터가 있으면?
+      let { word, mean, partsOfSpeech, sentences } = location.state;
       setWord(word);
       setMean(mean);
       setPartsOfSpeech(partsOfSpeech);
       setSentenceData(sentences);
+      setMethod("update");
+    } else { //새로운 카드를 작성한다면?
+      setMethod("post");
     }
-  },[])
-  
+  }, []);
 
   const addSentence = () => {
     setSentenceData([...sentenceData, { sentence: "", translation: "" }]);
@@ -35,12 +38,9 @@ const AddCard = () => {
     updatedSentenceData[index][key] = value;
     setSentenceData(updatedSentenceData);
   };
-  //새로운 카드 객체를 local에 저장하기
-  const addCard = () => {
-    if (word.trim() === "") {
-      alert("단어를 입력해주세요.");
-      return false;
-    }
+
+  const handleAction = () => {
+    const nickname = JSON.parse(sessionStorage.getItem("userData"))[2];
     const card = {
       word: word,
       mean: mean,
@@ -49,23 +49,38 @@ const AddCard = () => {
       isBookmarked: false,
       isChecked: false
     };
-    // 로컬 스토리지에 저장하기
     localStorage.setItem(card.word, JSON.stringify(card));
-    return true;
-  }
-
-  const handleAdd = () => {
-    if(addCard()){
-      alert('성공적으로 저장이 되었습니다.');
-      navigate("/");
+    if (method === "post") {
+      axios.post("http://localhost:1234/add-card", { card, nickname })
+        .then((response) => {
+          console.log('데이터 결과 : ', response.data);
+          alert('성공적으로 저장이 되었습니다.');
+        })
+        .catch(error => {
+          console.error('데이터 저장 에러: ', error);
+          alert('데이터 저장에 실패했습니다.');
+        });
+    } else if (method === "update") {
+      axios.put("http://localhost:1234/update-card", { card, nickname })
+        .then(response => {
+          console.log('카드 수정 완료 ->', response);
+          alert('성공적으로 업데이트 되었습니다.');
+        })
+        .catch(error => {
+          console.error('카드 업데이트 에러: ', error);
+          alert('카드 업데이트에 실패했습니다.');
+        });
     }
-  }
+
+    navigate("/");
+  };
+  
   return (
     <div>
       <div className="head-container">
         <div className="cancel-btn" onClick={()=>navigate("/")}>취소</div>
         <div className="head-title">새 단어</div>
-        <div className="add-btn" onClick={handleAdd}>완료</div>
+        <div className="add-btn" onClick={handleAction}>완료</div>
       </div>
       <div className="main">
         <div className="input-container">

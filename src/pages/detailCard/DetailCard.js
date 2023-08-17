@@ -6,6 +6,7 @@ import volume from "../../assets/volume.png";
 import "./detailCard.css";
 import { speak } from "./speak";
 import { useState,useEffect } from "react";
+import axios from "axios";
 
 const DetailCard = () => {
   const navigate = useNavigate();
@@ -46,13 +47,18 @@ const DetailCard = () => {
   const handleDeleteClick = () => {
     let result = window.confirm("카드를 삭제하시겠습니까?");
     if(result){
-        localStorage.removeItem(wordCard.word);
-        navigate("/");
+        axios.delete(`http://localhost:1234/${wordCard.word}`)
+        .then(response => {
+          console.log(response)
+          localStorage.removeItem(wordCard.word);
+          navigate("/");
+
+        })
         // DB 업데이트
     }
   }
   const handleUpdateClick = () => {
-    navigate("/add-card", {state: wordCard});
+    navigate("/add-card", {state: wordCard, dml: "update"});
   }
   return (
     <div>
@@ -82,12 +88,16 @@ const DetailCard = () => {
           </div>
           <div className="memo">이곳은 메모칸입니다.</div>
         </div>
-        <div className="sentence-box">
-          <div className="sen-txt">예문 1</div>
-          <div className="sen">{data.sentences[0].sentence}</div>
-          <div className="trans">{data.sentences[0].translation}</div>
-
+        <div className="sentencesss">
+        {data.sentences.map((sentence, index) => (
+    <div className="sentence-box" key={index}>
+      <div className="sen-txt">예문 {index + 1}</div>
+      <div className="sen">{sentence.sentence}</div>
+      <div className="trans">{sentence.translation}</div>
+    </div>
+  ))}
         </div>
+
       </div>
     </div>
   );
