@@ -18,7 +18,7 @@ const Mypage = () => {
     axios
       .get(`http://localhost:1234/mypage/${name}`)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setTotalCnt(response.data[0]);
         setTodayCnt(response.data[1]);
       })
