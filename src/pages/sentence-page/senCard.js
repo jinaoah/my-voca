@@ -12,24 +12,21 @@ const sentences = props.sentences;
 const navigate = props.navigate;
 
 useEffect(()=> {
-        // props.sentences.map((data, idx) => {
-        //     console.log(data[1]);
-        // })
-        // console.log(sentences[0]);
+        console.log('상세 문장 : ', sentences);
     })
     // console.log(props.sentences);
   return (
     <div className="sencard">
-         { sentences.map((data, idx) => (
-          // <div className="sen-container" >
-            <div className="sen-box" key={idx} onClick={()=>navigate("/sen-card", {state: data})}>
-            <div className="sen-card">
-            <div className="word">{data[1]}</div>
-            <div className="mean">{data[2]}</div>
-        </div>
-        </div>
-    // </div>
-        ))}
+         {sentences
+  .filter((data, idx, self) => self.findIndex(d => d[0] === data[0] && d[1] === data[1]) === idx)
+  .map((data, idx) => (
+    <div className="sen-box" key={idx} onClick={() => navigate("/sen-card", { state: data })}>
+      <div className="sen-card">
+        <div className="word">{data[0]}</div>
+        <div className="mean">{data[1]}</div> 
+      </div>
+    </div>
+  ))}
     </div>
      
     

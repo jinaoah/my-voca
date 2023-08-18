@@ -10,8 +10,8 @@ const Sentence = () => {
     useEffect(()=> {
         axios.get("http://localhost:1234/sentences")
         .then(response => {
-            console.log(response.data);
             setSentences(response.data);
+            console.log(sentences);
         }).catch(err => {
             console.log(err);
         })
